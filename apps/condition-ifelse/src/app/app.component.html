@@ -1,0 +1,22 @@
+<span>
+    <button (click)="increment()">+</button>
+</span>
+<span>
+  {{couter}}
+</span>
+<span>
+    <button (click)="decrement()">-</button>
+</span>
+<div *ngIf="couter >=18 else nobiaruou">
+  <p>Đã đủ tuổi uống rượu</p>
+</div>
+<ng-template #nobiaruou>
+  <p>Cấm uống</p>
+</ng-template>
+
+<ng-template [ngIf]="couter >= 18" [ngIfElse]="hjehehe">
+  <p>Lấy vợ</p>
+</ng-template>
+<ng-template #hjehehe>
+  <p>Cấm lấy</p>
+</ng-template>

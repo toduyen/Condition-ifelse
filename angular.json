@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "projects": {
+    "condition-ifelse": {
+      "projectType": "application",
+      "root": "apps/condition-ifelse",
+      "sourceRoot": "apps/condition-ifelse/src",
+      "prefix": "condition-ifelse",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/condition-ifelse",
+            "index": "apps/condition-ifelse/src/index.html",
+            "main": "apps/condition-ifelse/src/main.ts",
+            "polyfills": "apps/condition-ifelse/src/polyfills.ts",
+            "tsConfig": "apps/condition-ifelse/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/condition-ifelse/src/favicon.ico",
+              "apps/condition-ifelse/src/assets"
+            ],
+            "styles": ["apps/condition-ifelse/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/condition-ifelse/src/environments/environment.ts",
+                  "with": "apps/condition-ifelse/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "condition-ifelse:build:production"
+            },
+            "development": {
+              "browserTarget": "condition-ifelse:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "condition-ifelse:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/condition-ifelse/src/**/*.ts",
+              "apps/condition-ifelse/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/condition-ifelse"],
+          "options": {
+            "jestConfig": "apps/condition-ifelse/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "condition-ifelse-e2e": {
+      "root": "apps/condition-ifelse-e2e",
+      "sourceRoot": "apps/condition-ifelse-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/condition-ifelse-e2e/cypress.json",
+            "devServerTarget": "condition-ifelse:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "condition-ifelse:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/condition-ifelse-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["condition-ifelse"]
+    }
+  }
+}

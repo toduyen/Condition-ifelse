@@ -1,0 +1,16 @@
+
+@mixin style-span {
+  background-color: yellowgreen;
+  border: 1px solid black;
+  padding: 40px;
+}
+span:first-child  > button{
+  @include style-span
+}
+span:nth-child(2){
+  color: blue;
+  font-size: 40px;
+}
+span:last-child > button {
+  @include style-span
+}
